@@ -1,0 +1,39 @@
+<!-- /snippets/blog-sidebar.liquid -->
+{% comment %}
+  Recent blog posts
+{% endcomment %}
+<div class="nav-container">
+  <nav class="recent-posts">
+    <h5>{{ 'blogs.sidebar.recent_articles' | t }}</h5>
+    <ul>
+      {% for article in blogs[blog.handle].articles limit:6 %}
+        <li>
+          <a href="{{ article.url }}"><time datetime="{{ article.published_at | date: '%Y-%m-%d' }}">{{ article.published_at | date: format: 'month_day_year' }}</time>
+          <span class="title">{{ article.title }}</span></a>
+        </li>
+      {% endfor %}
+    </ul>
+  </nav>
+  {% comment %}
+    Blog tags
+  {% endcomment %}
+  {% if settings.blog_categories_enable %}
+  <nav class="categories tags">
+    {% if blog.all_tags.size > 0 %}
+    <h5>{{ 'blogs.sidebar.categories' | t }}</h5>
+    <ul>
+      {% for tag in blog.all_tags %}
+        {% if current_tags contains tag %}
+        <li class="active close">{{ tag | capitalize | link_to_remove_tag: tag }}</li>
+        {% else %}
+        <li>{{ tag | capitalize | link_to_tag: tag }}</li>
+        {% endif %}
+      {% endfor %}
+    </ul>
+    {% endif %}
+  </nav>
+  {% endif %}
+  <nav>
+    <a class="util" href="{{ shop.url | append: blog.url | append: '.atom' }}">RSS Feed</a>
+  </nav>
+</div>

@@ -1,0 +1,33 @@
+<!-- /snippets/recent-posts.liquid -->
+{% assign collection_limit = 3 %}
+<div class="recent-posts-collection layout-{{ collection_limit }}">
+  <div class="wrapper">
+    <header>
+      <h4>{{ 'homepage.sections.news_title' | t }}</h4>
+      <a href="{{ blogs[settings.homepage_recent_posts_blog].url }}" class="button outline">{{ 'blogs.general.view_blog' | t }}</a>
+    </header>
+    <div class="recent-posts-container">
+      {% for article in blogs[settings.homepage_recent_posts_blog].articles limit:collection_limit %}
+        <article>
+          <header>
+            <h5><a href="{{ article.url }}">{{ article.title }}</a></h5>
+            <time datetime="{{ article.published_at | date: '%Y-%m-%d' }}">{{ article.published_at | date: format: 'month_day_year' }}</time>
+          </header>
+          {% if article.image %}
+            <div class="article-image">
+              <a href="{{ article.url }}"><img src="{{ article.image.src | img_url: 'grande' }}" alt="{{ article.title }}"></a>
+            </div>
+          {% endif %}
+          <section class="rte">
+            {% if article.excerpt.size > 0 %}
+              {{ article.excerpt }}
+            {% else %}
+              <p>{{ article.content | strip_html | truncatewords: 40 }}</p>
+            {% endif %}
+            <p class="read-more"><a href="{{ article.url }}" class="button outline">{{ 'blogs.article.read_more' | t }}</a></p>
+          </section>
+        </article>
+      {% endfor %}
+    </div>
+  </div>
+</div>

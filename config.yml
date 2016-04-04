@@ -1,0 +1,5 @@
+development:
+  access_token: ed4816ba709392218b0a3513fcdffef1
+  store: swaperoo.myshopify.com
+  bucket_size: 40
+  refill_rate: 2
