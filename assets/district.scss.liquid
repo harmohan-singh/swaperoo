@@ -8,7 +8,7 @@
     - The output CSS is compressed and comments are removed
     - You cannot use @imports in this file
         * Use grunt or gulp tasks to enable @imports - https://github.com/Shopify/shopify-css-import
-==============================================================================*/
+===========================================================================`===*/
 
 /*============================================================================
   Table of Contents
@@ -266,6 +266,12 @@ $max: max-width;
   $headerFontWeight: 600;
   $navFontStack: 'Lora', serif;
   $bodyFontStack: 'Lora', serif;
+  $logoFontStack: $navFontStack;
+{% elsif font_combo == 'muli' %}
+  $headerFontStack: 'Muli', sans-serif;
+  $headerFontWeight: 600;
+  $navFontStack: 'Muli', sans-serif;
+  $bodyFontStack: 'Muli', sans-serif;
   $logoFontStack: $navFontStack;
 {% endif %}
 
@@ -2822,15 +2828,16 @@ div.header-content {
   #Featured Text
 ==============================================================================*/
 div.featured-text {
-  padding: $verticalContainerPadding 20px;
+  padding: $verticalContainerPadding 250px;
   {% if settings.homepage_show_borders %}
   border-bottom: 1px solid mix($primaryTextColor, $primaryBackgroundColor, 10%);
   {% endif %}
   .wrapper {
+    background-color: #666666;
     @if $homeFeaturedFullWidth {
       @include outer-container();
     } @else {
-      @include outer-container($siteWidth);
+      @include outer-container(900px);
     }
   }
 
@@ -2838,7 +2845,6 @@ div.featured-text {
     padding: 40px 20px 20px;
     font-size: 14px;
   }
-  background-color: $homeFeaturedBackgroundColor;
 
   h2.title {
     text-align: center;
@@ -2877,7 +2883,7 @@ div.featured-text {
   #Featured Grid
 ==============================================================================*/
 div.featured-grid {
-  padding: $verticalContainerPadding 10px;
+  padding: 10px 20px;
   {% if settings.homepage_show_borders %}
   border-bottom: 1px solid mix($primaryTextColor, $primaryBackgroundColor, 10%);
   {% endif %}
@@ -2940,7 +2946,7 @@ div.featured-grid {
       position: relative;
       display: block;
       overflow: hidden;
-      max-width: 575px;
+      max-width: 500px;
       margin: 0 auto;
 
       img {
@@ -3135,7 +3141,7 @@ body.template-index {
       @include grid-item(6);
     }
     @include mediaQuery($max, $mobile) {
-      @include grid-item(12);
+      @include grid-item(6);
 
       &.header {
         .details {
@@ -5694,7 +5700,6 @@ footer.site-footer {
       &.newsletter {
         @include grid-item(12);
         margin-bottom: 20px;
-
         .offer-email {
           border-bottom: 1px solid mix($footerTitleTextColor, $footerBackgroundColor, 30%);
           padding-bottom: 20px;
@@ -5703,7 +5708,6 @@ footer.site-footer {
       &.social {
         @include grid-item(12);
         margin-top: 20px;
-
         > *:first-child {
           padding-top: 20px;
           border-top: 1px solid mix($footerTitleTextColor, $footerBackgroundColor, 30%);
@@ -5731,6 +5735,10 @@ footer.site-footer {
         @include grid-item(12);
       }
     }
+  }
+  .newsletter {
+    padding-left:200px;
+    width: 40%;
   }
 
   h4 {
