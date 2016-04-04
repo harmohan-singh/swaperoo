@@ -1,4 +1,19 @@
 <!-- /snippets/featured-page.liquid -->
+<script type="text/javascript">
+
+jQuery(document).ready(function($) {
+  $(function(){
+    $('#show-more-content').hide();
+    $('#show-more').on('click', function(e){
+      e.preventDefault();
+      $('#show-more-content').show();
+      $('#show-more').hide();
+
+    });
+  });
+});
+
+</script>
 <div class="featured-text page-{{ page_type }} {% if full_width_page %}full-width{% endif %}">
   {% unless full_width_page %}
   <div class="wrapper">
@@ -8,7 +23,7 @@
       {% if show_title %}
         <h2 class="title">{{ pages[featured_page].title }}</h2>
       {% endif %}
-      {{ pages[featured_page].content }}
+      {{ pages[featured_page].content }} 
     </div>
 
   {% unless full_width_page %}

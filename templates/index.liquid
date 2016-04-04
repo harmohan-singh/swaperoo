@@ -17,13 +17,14 @@
 {% assign featured_page = settings.homepage_featured_page %}
 {% assign full_width_page = settings.homepage_featured_page_full_width %}
 {% assign show_title = settings.homepage_featured_page_show_title %}
-{% assign page_type = 'featured'%}}
-{% if featured_page != blank %}
-{% include 'featured-page' %}
-{% endif %}
+{% assign page_type = 'featured'%}
 
 {% if settings.homepage_featured_grid_enable %}
 {% include 'featured-grid' %}
+{% endif %}
+
+{% if featured_page != blank %}
+{% include 'featured-page' %}
 {% endif %}
 
 {% comment %}
@@ -52,6 +53,7 @@
 {% if settings.homepage_instagram_enable and settings.homepage_instagram_access_token != '' %}
 {% include 'instagram' %}
 {% endif %}
+
 
 {% comment %}
   Bottom page
